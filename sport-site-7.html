@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>גול 90 | Goal 90</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Heebo:wght@300;400;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00c853;
+    --dark-green: #007a32;
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #ff3d00;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Heebo', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body[dir="ltr"] { font-family: 'Oswald', sans-serif; }
+
+  /* ===== TICKER ===== */
+  .ticker {
+    background: var(--green);
+    color: var(--black);
+    padding: 6px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+  }
+  .ticker-inner span { margin: 0 40px; }
+  .ticker-inner span::before { content: '⚽ '; }
+  @keyframes ticker { from { transform: translateX(100vw); } to { transform: translateX(-100%); } }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--dark);
+    border-bottom: 3px solid var(--green);
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 4px 30px rgba(0,200,83,0.15);
+  }
+  .header-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px; height: 64px;
+  }
+  .logo {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 42px;
+    color: var(--green);
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(0,200,83,0.4);
+    line-height: 1;
+  }
+  .logo span { color: white; }
+  nav { display: flex; gap: 4px; align-items: center; overflow-x: auto; max-width: 600px; }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    color: var(--muted); text-decoration: none;
+    padding: 6px 10px; border-radius: 4px;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.3px; transition: all 0.2s;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  nav a:hover, nav a.active { color: var(--green); background: rgba(0,200,83,0.1); }
+
+  /* hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 8px; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--text); border-radius: 2px; transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none; flex-direction: column;
+    background: var(--dark); border-top: 1px solid var(--border);
+    padding: 12px 24px; gap: 4px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    color: var(--muted); text-decoration: none;
+    padding: 12px 16px; border-radius: 6px;
+    font-size: 15px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+    transition: all 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--green); background: rgba(0,200,83,0.08); }
+
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+    .search-wrap { display: none; }
+    .logo { font-size: 32px; }
+  }
+  .lang-btn {
+    background: var(--border); border: 1px solid var(--green);
+    color: var(--green); padding: 5px 12px; border-radius: 4px;
+    cursor: pointer; font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; transition: all 0.2s; margin-right: 8px;
+  }
+  .lang-btn:hover { background: var(--green); color: var(--black); }
+
+  /* ===== SEARCH ===== */
+  .search-wrap {
+    position: relative; margin-right: 12px;
+  }
+  body[dir="ltr"] .search-wrap { margin-right: 0; margin-left: 12px; }
+
+  .search-input {
+    background: var(--border); border: 1px solid #3a3a3a;
+    color: var(--text); border-radius: 6px;
+    padding: 7px 36px 7px 14px;
+    font-size: 13px; font-family: inherit;
+    width: 200px; transition: all 0.25s; outline: none;
+  }
+  body[dir="ltr"] .search-input { padding: 7px 14px 7px 36px; }
+  .search-input:focus {
+    border-color: var(--green); width: 260px;
+    background: #1e1e1e;
+    box-shadow: 0 0 0 3px rgba(0,200,83,0.1);
+  }
+  .search-input::placeholder { color: var(--muted); }
+  .search-icon {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    left: 10px; color: var(--muted); pointer-events: none; font-size: 15px;
+  }
+  body[dir="ltr"] .search-icon { left: auto; right: 10px; }
+
+  /* Dropdown */
+  .search-dropdown {
+    position: absolute; top: calc(100% + 8px);
+    right: 0; width: 380px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: none; z-index: 999;
+  }
+  body[dir="ltr"] .search-dropdown { right: auto; left: 0; }
+  .search-dropdown.open { display: block; animation: dropIn 0.2s ease; }
+  @keyframes dropIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:translateY(0); } }
+
+  .search-tabs {
+    display: flex; border-bottom: 1px solid var(--border);
+  }
+  .search-tab {
+    flex: 1; padding: 10px; text-align: center;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px;
+    color: var(--muted); cursor: pointer; transition: all 0.2s;
+    text-transform: uppercase; border: none; background: none;
+  }
+  .search-tab.active { color: var(--green); border-bottom: 2px solid var(--green); }
+
+  .search-results { max-height: 340px; overflow-y: auto; }
+  .search-results::-webkit-scrollbar { width: 4px; }
+  .search-results::-webkit-scrollbar-track { background: var(--card); }
+  .search-results::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .result-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; cursor: pointer; transition: background 0.15s;
+    border-bottom: 1px solid var(--border);
+  }
+  .result-item:last-child { border-bottom: none; }
+  .result-item:hover { background: rgba(0,200,83,0.07); }
+
+  .result-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--dark); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .result-avatar.team { border-radius: 8px; }
+
+  .result-info { flex: 1; min-width: 0; }
+  .result-name { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .result-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .result-badge {
+    font-family: 'Bebas Neue', cursive; font-size: 20px;
+    color: var(--green); flex-shrink: 0;
+  }
+  .result-badge small { font-family: 'Heebo', sans-serif; font-size: 10px; color: var(--muted); display: block; text-align: center; }
+
+  .no-results {
+    text-align: center; padding: 32px 16px;
+    color: var(--muted); font-size: 14px;
+  }
+  .no-results span { display: block; font-size: 32px; margin-bottom: 8px; }
+
+  /* ===== HERO ===== */
+  .hero {
+    max-width: 1300px; margin: 32px auto; padding: 0 24px;
+    display: grid; grid-template-columns: 2fr 1fr; gap: 24px;
+  }
+  .hero-main {
+    position: relative; border-radius: 12px; overflow: hidden;
+    aspect-ratio: 16/9; cursor: pointer;
+    background: linear-gradient(135deg, #0a2e14, #001a0a);
+    border: 1px solid var(--border);
+    transition: transform 0.3s;
+  }
+  .hero-main:hover { transform: scale(1.01); }
+  .hero-main-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0d3d1a 0%, #071a0c 60%, #000 100%);
+  }
+  .hero-main-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(0,200,83,0.15) 0%, transparent 60%);
+  }
+  .pitch-lines {
+    position: absolute; inset: 0; opacity: 0.06;
+    background-image:
+      linear-gradient(90deg, #fff 1px, transparent 1px),
+      linear-gradient(#fff 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-tag {
+    position: absolute; top: 20px; right: 20px;
+    background: var(--accent); color: white;
+    padding: 4px 12px; border-radius: 4px;
+    font-size: 11px; font-weight: 900; letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .hero-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 32px 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+  }
+  .hero-league {
+    font-size: 11px; color: var(--green); font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(28px, 4vw, 44px); line-height: 1.1;
+    color: white; margin-bottom: 10px;
+  }
+  .hero-meta { font-size: 13px; color: var(--muted); }
+  .hero-meta span { color: var(--green); }
+
+  /* Hero Side */
+  .hero-side { display: flex; flex-direction: column; gap: 16px; }
+  .side-card {
+    flex: 1; border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border); cursor: pointer;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: 140px; position: relative;
+    background: var(--card); transition: border-color 0.2s;
+    padding: 16px;
+  }
+  .side-card:hover { border-color: var(--green); }
+  .side-card-tag {
+    font-size: 10px; color: var(--green);
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .side-card h3 { font-size: 15px; font-weight: 700; line-height: 1.3; color: white; }
+  .side-card .meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+  /* ===== SCORES BAR ===== */
+  .scores-section {
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    overflow-x: auto;
+  }
+  .scores-inner {
+    max-width: 1300px; margin: 0 auto; padding: 0 24px;
+    display: flex; gap: 12px; align-items: center; min-width: max-content;
+  }
+  .scores-label {
+    font-size: 11px; font-weight: 700; color: var(--green);
+    letter-spacing: 2px; text-transform: uppercase;
+    padding-left: 16px; border-left: 2px solid var(--green);
+    white-space: nowrap;
+  }
+  body[dir="ltr"] .scores-label { border-left: none; border-right: 2px solid var(--green); padding-left: 0; padding-right: 16px; }
+  .score-card {
+    background: var(--dark); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 16px; min-width: 180px;
+    cursor: pointer; transition: border-color 0.2s;
+  }
+  .score-card:hover { border-color: var(--green); }
+  .score-league { font-size: 10px; color: var(--muted); margin-bottom: 6px; letter-spacing: 1px; }
+  .score-teams { display: flex; flex-direction: column; gap: 4px; }
+  .score-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .score-team { font-size: 13px; font-weight: 700; }
+  .score-num {
+    font-family: 'Bebas Neue', cursive; font-size: 20px;
+    color: var(--green); min-width: 20px; text-align: center;
+  }
+  .score-status {
+    font-size: 10px; color: var(--accent); font-weight: 700;
+    text-align: center; margin-top: 4px; letter-spacing: 1px;
+  }
+  .score-status.final { color: var(--muted); }
+
+  /* ===== MAIN CONTENT ===== */
+  .main {
+    max-width: 1300px; margin: 40px auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 320px; gap: 32px;
+  }
+
+  /* Section header */
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-header h2 {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 28px; letter-spacing: 2px; color: white;
+  }
+  .section-line {
+    flex: 1; height: 2px;
+    background: linear-gradient(to left, transparent, var(--green));
+  }
+  body[dir="ltr"] .section-line { background: linear-gradient(to right, transparent, var(--green)); }
+
+  /* News grid */
+  .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 40px; }
+  .news-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden; cursor: pointer;
+    transition: all 0.25s;
+  }
+  .news-card:hover { border-color: var(--green); transform: translateY(-2px); }
+  .news-card-img {
+    height: 160px;
+    background: linear-gradient(135deg, #0d2e17, #001a0a);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .news-card-img .field-icon { font-size: 48px; opacity: 0.3; }
+  .news-card-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.7) 100%);
+  }
+  .news-card-body { padding: 14px; }
+  .news-tag {
+    font-size: 10px; color: var(--green); font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .news-card-body h3 { font-size: 15px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .news-card-body p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .news-footer { display: flex; justify-content: space-between; margin-top: 10px; font-size: 12px; color: var(--muted); }
+
+  /* Standings table */
+  .standings-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .standings-table th {
+    padding: 8px 10px; text-align: right;
+    color: var(--muted); font-size: 11px; letter-spacing: 1px;
+    border-bottom: 1px solid var(--border); font-weight: 700;
+  }
+  body[dir="ltr"] .standings-table th { text-align: left; }
+  .standings-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); }
+  .standings-table tr:hover td { background: rgba(0,200,83,0.05); }
+  .standings-table tr:last-child td { border-bottom: none; }
+  .rank { color: var(--muted); font-weight: 700; width: 24px; }
+  .rank.top3 { color: var(--green); }
+  .team-name { font-weight: 700; }
+  .pts { font-family: 'Bebas Neue', cursive; font-size: 18px; color: var(--green); }
+  .form-dots { display: flex; gap: 3px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .dot.w { background: var(--green); }
+  .dot.d { background: #888; }
+  .dot.l { background: var(--accent); }
+
+  /* Sidebar */
+  .sidebar { display: flex; flex-direction: column; gap: 24px; }
+  .widget {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+  }
+  .widget-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px; color: var(--green);
+    letter-spacing: 2px; margin-bottom: 16px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+  }
+  .scorer-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+  }
+  .scorer-row:last-child { border-bottom: none; }
+  .scorer-rank { font-family: 'Bebas Neue', cursive; font-size: 22px; color: var(--border); width: 24px; }
+  .scorer-info { flex: 1; }
+  .scorer-name { font-weight: 700; font-size: 14px; }
+  .scorer-team { font-size: 12px; color: var(--muted); }
+  .scorer-goals {
+    font-family: 'Bebas Neue', cursive; font-size: 28px;
+    color: var(--green);
+  }
+
+  /* Upcoming */
+  .fixture {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .fixture:last-child { border-bottom: none; }
+  .fixture-teams { display: flex; flex-direction: column; gap: 2px; font-size: 13px; font-weight: 700; }
+  .fixture-vs { font-size: 11px; color: var(--green); font-weight: 700; }
+  .fixture-date { text-align: center; }
+  .fixture-date .day { font-family: 'Bebas Neue', cursive; font-size: 22px; color: white; line-height: 1; }
+  .fixture-date .month { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .fixture-time { font-size: 12px; color: var(--green); font-weight: 700; }
+
+  /* ===== STATS SECTION ===== */
+  .stats-section {
+    max-width: 1300px; margin: 0 auto 40px; padding: 0 24px;
+  }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px; text-align: center;
+    position: relative; overflow: hidden; cursor: pointer; transition: all 0.2s;
+  }
+  .stat-card:hover { border-color: var(--green); }
+  .stat-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--dark-green), var(--green));
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .stat-card:hover::before { transform: scaleX(1); }
+  .stat-num {
+    font-family: 'Bebas Neue', cursive; font-size: 52px;
+    color: var(--green); line-height: 1;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .stat-sub { font-size: 13px; color: var(--text); margin-top: 4px; font-weight: 700; }
+
+  /* Footer */
+  footer {
+    background: var(--dark); border-top: 1px solid var(--border);
+    text-align: center; padding: 24px;
+    color: var(--muted); font-size: 13px;
+  }
+  footer strong { color: var(--green); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-side { flex-direction: row; }
+    .main { grid-template-columns: 1fr; }
+    .news-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  /* ===== TEAMS PAGE ===== */
+  .league-filter {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--muted); padding: 7px 16px; border-radius: 20px;
+    cursor: pointer; font-size: 13px; font-weight: 700;
+    font-family: inherit; transition: all 0.2s; letter-spacing: 0.5px;
+  }
+  .league-filter:hover { border-color: var(--green); color: var(--green); }
+  .league-filter.active { background: var(--green); border-color: var(--green); color: var(--black); }
+
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .team-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px 16px;
+    text-align: center; cursor: pointer;
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .team-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,200,83,0.1); }
+  .team-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--dark-green), var(--green));
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .team-card:hover::before { transform: scaleX(1); }
+  .team-emoji { font-size: 44px; margin-bottom: 10px; display: block; }
+  .team-card-name { font-size: 16px; font-weight: 900; color: white; margin-bottom: 4px; }
+  .team-card-league {
+    font-size: 11px; color: var(--green); font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+  }
+  .team-card-stats {
+    display: flex; justify-content: space-around;
+    border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;
+  }
+  .team-stat { text-align: center; }
+  .team-stat-num { font-family: 'Bebas Neue', cursive; font-size: 22px; color: var(--green); line-height: 1; }
+  .team-stat-label { font-size: 10px; color: var(--muted); letter-spacing: 1px; }
+  .team-rank-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--dark); border: 1px solid var(--border);
+    border-radius: 6px; padding: 2px 8px;
+    font-family: 'Bebas Neue', cursive; font-size: 16px; color: var(--muted);
+  }
+  .team-rank-badge.top { color: var(--green); border-color: var(--green); }
+
+  @media (max-width: 900px) {
+    .teams-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
+</style>
+</head>
+<body dir="rtl">
+
+<!-- Ticker -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span>ריאל מדריד 3-1 ברצלונה</span>
+    <span>מנצ'סטר סיטי 2-0 ליברפול</span>
+    <span>מכבי ת"א 1-0 הפועל ת"א</span>
+    <span>ביירן מינכן 4-2 דורטמונד</span>
+    <span>פריז סן-ז'רמן 2-2 מארסיי</span>
+    <span>ליגת האלופות — שלב הבית</span>
+    <span>ריאל מדריד 3-1 ברצלונה</span>
+    <span>מנצ'סטר סיטי 2-0 ליברפול</span>
+    <span>מכבי ת"א 1-0 הפועל ת"א</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-inner">
+    <div class="logo" id="logo">גול<span>90</span></div>
+    <nav id="nav">
+      <a href="#" class="active" id="nav-home">בית</a>
+      <a href="#" id="nav-news">חדשות</a>
+      <a href="#" id="nav-scores">תוצאות</a>
+      <a href="#" id="nav-table">טבלה</a>
+      <a href="#" id="nav-teams" onclick="showTeamsPage(); return false;">קבוצות</a>
+      <a href="#" id="nav-trivia" onclick="showTriviaPage(); return false;">טריוויה ⚽</a>
+      <a href="#" id="nav-stats">סטטיסטיקות</a>
+    </nav>
+    <div class="search-wrap" id="searchWrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" id="searchInput" placeholder="חפש שחקן או קבוצה..." oninput="onSearch(this.value)" onfocus="openDropdown()" />
+      <div class="search-dropdown" id="searchDropdown">
+        <div class="search-tabs">
+          <button class="search-tab active" id="tabPlayers" onclick="switchTab('players')">שחקנים</button>
+          <button class="search-tab" id="tabTeams" onclick="switchTab('teams')">קבוצות</button>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="lang-btn" onclick="toggleLang()" id="langBtn">EN</button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" id="mob-home" class="active" onclick="showHomePage(); closeMenu();">🏠 בית</a>
+  <a href="#" id="mob-news" onclick="closeMenu();">📰 חדשות</a>
+  <a href="#" id="mob-scores" onclick="closeMenu();">⚽ תוצאות</a>
+  <a href="#" id="mob-table" onclick="closeMenu();">📊 טבלה</a>
+  <a href="#" id="mob-teams" onclick="showTeamsPage(); closeMenu();">🏆 קבוצות</a>
+  <a href="#" id="mob-trivia" onclick="showTriviaPage(); closeMenu();">🎯 טריוויה</a>
+  <a href="#" id="mob-stats" onclick="closeMenu();">📈 סטטיסטיקות</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-main">
+    <div class="hero-main-bg"></div>
+    <div class="pitch-lines"></div>
+    <div class="hero-tag" id="hero-tag">חם עכשיו</div>
+    <div class="hero-content">
+      <div class="hero-league" id="hero-league">⚽ ליגת האלופות | שלב הבית</div>
+      <h1 class="hero-title" id="hero-title">ריאל מדריד משמידה את ברצלונה בקלאסיקו הגדול ביותר של העונה</h1>
+      <div class="hero-meta" id="hero-meta">מאת <span>יוסי כהן</span> • לפני 2 שעות • <span>15,423</span> קריאות</div>
+    </div>
+  </div>
+  <div class="hero-side">
+    <div class="side-card">
+      <div class="side-card-tag" id="side1-tag">פרמייר ליג</div>
+      <h3 id="side1-title">ערלינג הולאן שובר שיא כל הזמנים של הפרמייר ליג ב-40 שערים</h3>
+      <div class="meta" id="side1-meta">⏰ לפני 4 שעות</div>
+    </div>
+    <div class="side-card">
+      <div class="side-card-tag" id="side2-tag">ליגה הלאומית</div>
+      <h3 id="side2-title">מכבי תל אביב מגיעה לגמר הליגה — 0:1 על הפועל בדרבי</h3>
+      <div class="meta" id="side2-meta">⏰ לפני 6 שעות</div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Scores -->
+<section class="scores-section">
+  <div class="scores-inner">
+    <div class="scores-label" id="scores-label">תוצאות חיות</div>
+
+    <div class="score-card">
+      <div class="score-league">UCL • 78'</div>
+      <div class="score-teams">
+        <div class="score-row"><span class="score-team">ריאל מדריד</span><span class="score-num">3</span></div>
+        <div class="score-row"><span class="score-team">ברצלונה</span><span class="score-num">1</span></div>
+      </div>
+      <div class="score-status">חי ●</div>
+    </div>
+
+    <div class="score-card">
+      <div class="score-league">PL • 65'</div>
+      <div class="score-teams">
+        <div class="score-row"><span class="score-team">מנצ' סיטי</span><span class="score-num">2</span></div>
+        <div class="score-row"><span class="score-team">ליברפול</span><span class="score-num">0</span></div>
+      </div>
+      <div class="score-status">חי ●</div>
+    </div>
+
+    <div class="score-card">
+      <div class="score-league">Liga Leumit • FT</div>
+      <div class="score-teams">
+        <div class="score-row"><span class="score-team">מכבי ת"א</span><span class="score-num">1</span></div>
+        <div class="score-row"><span class="score-team">הפועל ת"א</span><span class="score-num">0</span></div>
+      </div>
+      <div class="score-status final">סיום</div>
+    </div>
+
+    <div class="score-card">
+      <div class="score-league">Bundesliga • FT</div>
+      <div class="score-teams">
+        <div class="score-row"><span class="score-team">ביירן</span><span class="score-num">4</span></div>
+        <div class="score-row"><span class="score-team">דורטמונד</span><span class="score-num">2</span></div>
+      </div>
+      <div class="score-status final">סיום</div>
+    </div>
+
+    <div class="score-card">
+      <div class="score-league">Serie A • 55'</div>
+      <div class="score-teams">
+        <div class="score-row"><span class="score-team">יובנטוס</span><span class="score-num">1</span></div>
+        <div class="score-row"><span class="score-team">אינטר</span><span class="score-num">1</span></div>
+      </div>
+      <div class="score-status">חי ●</div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Strip -->
+<section class="stats-section" style="margin-top:40px">
+  <div class="section-header">
+    <h2 id="stats-title">סטטיסטיקות עונה</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">2,847</div><div class="stat-label" id="stat1">שערים שנכנסו</div><div class="stat-sub">כל הליגות</div></div>
+    <div class="stat-card"><div class="stat-num">40</div><div class="stat-label" id="stat2">שיא שערים</div><div class="stat-sub">הולאן, מנצ' סיטי</div></div>
+    <div class="stat-card"><div class="stat-num">94%</div><div class="stat-label" id="stat3">אחוז סיום</div><div class="stat-sub">ריאל מדריד</div></div>
+    <div class="stat-card"><div class="stat-num">18</div><div class="stat-label" id="stat4">ניצחונות רצופים</div><div class="stat-sub">ליגת האלופות</div></div>
+  </div>
+</section>
+
+<!-- Main + Sidebar -->
+<section class="main">
+  <div>
+    <!-- News -->
+    <div class="section-header">
+      <h2 id="news-title">חדשות אחרונות</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-card-img"><div class="field-icon">⚽</div></div>
+        <div class="news-card-body">
+          <div class="news-tag">העברות</div>
+          <h3 id="n1">קיליאן מבאפה חותם על חוזה הארוך ביותר בתולדות ריאל מדריד</h3>
+          <p id="n1p">הכוכב הצרפתי ממשיך עוד 5 שנים בסנטיאגו ברנאבאו תמורת שכר שבועי עצום</p>
+          <div class="news-footer"><span id="n1date">לפני 3 שעות</span><span>4.2K שיתופים</span></div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-card-img"><div class="field-icon">🏆</div></div>
+        <div class="news-card-body">
+          <div class="news-tag">ליגת האלופות</div>
+          <h3 id="n2">מנצ'סטר סיטי — פיינל פור: הנשר מרחף שוב</h3>
+          <p id="n2p">גארדיולה מבטיח: "אנחנו מוכנים להתחרות על הגביע השלישי ברציפות"</p>
+          <div class="news-footer"><span id="n2date">לפני 5 שעות</span><span>2.8K שיתופים</span></div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-card-img"><div class="field-icon">🇮🇱</div></div>
+        <div class="news-card-body">
+          <div class="news-tag">כדורגל ישראלי</div>
+          <h3 id="n3">נבחרת ישראל מתמודדת בפלייאוף לאליפות אירופה 2026</h3>
+          <p id="n3p">בן דיין: "אנחנו מאמינים שזו ההזדמנות ההיסטורית שלנו להיות שם"</p>
+          <div class="news-footer"><span id="n3date">לפני 8 שעות</span><span>6.1K שיתופים</span></div>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-card-img"><div class="field-icon">📊</div></div>
+        <div class="news-card-body">
+          <div class="news-tag">ניתוח</div>
+          <h3 id="n4">למה הפרמייר ליג שולטת בכדורגל העולמי — ניתוח מספרים</h3>
+          <p id="n4p">נתוני ה-AI חושפים: הליגה האנגלית מייצרת 37% יותר הזדמנויות מכל ליגה אחרת</p>
+          <div class="news-footer"><span id="n4date">לפני 12 שעות</span><span>3.5K שיתופים</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standings -->
+    <div class="section-header" style="margin-top:16px">
+      <h2 id="table-title">טבלת ליגת האלופות</h2>
+      <div class="section-line"></div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;padding:4px">
+      <table class="standings-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th id="th-team">קבוצה</th>
+            <th id="th-p">מ'</th>
+            <th id="th-w">נ</th>
+            <th id="th-d">ת</th>
+            <th id="th-l">ה</th>
+            <th id="th-pts">נק'</th>
+            <th id="th-form">פורמה</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="rank top3">1</td><td class="team-name">ריאל מדריד</td><td>7</td><td>6</td><td>1</td><td>0</td><td class="pts">19</td><td><div class="form-dots"><span class="dot w"></span><span class="dot w"></span><span class="dot w"></span><span class="dot d"></span><span class="dot w"></span></div></td></tr>
+          <tr><td class="rank top3">2</td><td class="team-name">מנצ' סיטי</td><td>7</td><td>5</td><td>2</td><td>0</td><td class="pts">17</td><td><div class="form-dots"><span class="dot w"></span><span class="dot d"></span><span class="dot w"></span><span class="dot w"></span><span class="dot d"></span></div></td></tr>
+          <tr><td class="rank top3">3</td><td class="team-name">ברצלונה</td><td>7</td><td>5</td><td>0</td><td>2</td><td class="pts">15</td><td><div class="form-dots"><span class="dot w"></span><span class="dot w"></span><span class="dot l"></span><span class="dot w"></span><span class="dot l"></span></div></td></tr>
+          <tr><td class="rank">4</td><td class="team-name">ביירן מינכן</td><td>7</td><td>4</td><td>1</td><td>2</td><td class="pts">13</td><td><div class="form-dots"><span class="dot w"></span><span class="dot l"></span><span class="dot w"></span><span class="dot d"></span><span class="dot w"></span></div></td></tr>
+          <tr><td class="rank">5</td><td class="team-name">ליברפול</td><td>7</td><td>4</td><td>0</td><td>3</td><td class="pts">12</td><td><div class="form-dots"><span class="dot l"></span><span class="dot w"></span><span class="dot l"></span><span class="dot w"></span><span class="dot w"></span></div></td></tr>
+          <tr><td class="rank">6</td><td class="team-name">PSG</td><td>7</td><td>3</td><td>2</td><td>2</td><td class="pts">11</td><td><div class="form-dots"><span class="dot d"></span><span class="dot w"></span><span class="dot d"></span><span class="dot l"></span><span class="dot w"></span></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Top Scorers -->
+    <div class="widget">
+      <div class="widget-title" id="scorers-title">מלך השערים</div>
+      <div class="scorer-row"><span class="scorer-rank">1</span><div class="scorer-info"><div class="scorer-name">ארלינג הולאן</div><div class="scorer-team">מנצ'סטר סיטי</div></div><span class="scorer-goals">40</span></div>
+      <div class="scorer-row"><span class="scorer-rank">2</span><div class="scorer-info"><div class="scorer-name">קיליאן מבאפה</div><div class="scorer-team">ריאל מדריד</div></div><span class="scorer-goals">32</span></div>
+      <div class="scorer-row"><span class="scorer-rank">3</span><div class="scorer-info"><div class="scorer-name">ויניציוס ג'ר</div><div class="scorer-team">ריאל מדריד</div></div><span class="scorer-goals">28</span></div>
+      <div class="scorer-row"><span class="scorer-rank">4</span><div class="scorer-info"><div class="scorer-name">לאוטרו מרטינז</div><div class="scorer-team">אינטר מילאן</div></div><span class="scorer-goals">25</span></div>
+      <div class="scorer-row"><span class="scorer-rank">5</span><div class="scorer-info"><div class="scorer-name">מוחמד סלאח</div><div class="scorer-team">ליברפול</div></div><span class="scorer-goals">24</span></div>
+    </div>
+
+    <!-- Upcoming Fixtures -->
+    <div class="widget">
+      <div class="widget-title" id="fixtures-title">משחקים קרובים</div>
+      <div class="fixture"><div class="fixture-teams"><span>ריאל מדריד</span><span class="fixture-vs">vs</span><span>מנצ' סיטי</span></div><div class="fixture-date"><div class="day">14</div><div class="month">יוני</div><div class="fixture-time">22:00</div></div></div>
+      <div class="fixture"><div class="fixture-teams"><span>מכבי ת"א</span><span class="fixture-vs">vs</span><span>בית"ר י-ם</span></div><div class="fixture-date"><div class="day">15</div><div class="month">יוני</div><div class="fixture-time">20:30</div></div></div>
+      <div class="fixture"><div class="fixture-teams"><span>ברצלונה</span><span class="fixture-vs">vs</span><span>PSG</span></div><div class="fixture-date"><div class="day">17</div><div class="month">יוני</div><div class="fixture-time">21:00</div></div></div>
+      <div class="fixture"><div class="fixture-teams"><span>ביירן</span><span class="fixture-vs">vs</span><span>ליברפול</span></div><div class="fixture-date"><div class="day">18</div><div class="month">יוני</div><div class="fixture-time">21:45</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Teams Page (hidden by default) -->
+<section id="teamsPage" style="display:none; max-width:1300px; margin:40px auto; padding:0 24px;">
+  <div class="section-header">
+    <h2 id="teams-page-title">כל הקבוצות</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- League filter tabs -->
+  <div id="leagueTabs" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px;">
+    <button class="league-filter active" onclick="filterLeague('all')" id="fAll">הכל</button>
+    <button class="league-filter" onclick="filterLeague('לה ליגה')" id="fLaLiga">לה ליגה</button>
+    <button class="league-filter" onclick="filterLeague('פרמייר ליג')" id="fPL">פרמייר ליג</button>
+    <button class="league-filter" onclick="filterLeague('בונדסליגה')" id="fBundes">בונדסליגה</button>
+    <button class="league-filter" onclick="filterLeague('סריה א')" id="fSerie">סריה א</button>
+    <button class="league-filter" onclick="filterLeague('ליג 1')" id="fLigue">ליג 1</button>
+    <button class="league-filter" onclick="filterLeague('ליגה הלאומית')" id="fIsrael">ליגה הלאומית</button>
+    <button class="league-filter" onclick="filterLeague('UCL')" id="fUCL">ליגת האלופות</button>
+  </div>
+
+  <div id="teamsGrid" class="teams-grid"></div>
+</section>
+
+<!-- Trivia Page -->
+<section id="triviaPage" style="display:none; max-width:700px; margin:40px auto; padding:0 24px;">
+  <div id="triviaStart">
+    <div style="text-align:center; padding: 48px 0;">
+      <div style="font-size:72px; margin-bottom:16px;">⚽</div>
+      <h1 style="font-family:'Bebas Neue',cursive; font-size:52px; color:var(--green); letter-spacing:3px; margin-bottom:8px;">טריוויה כדורגל</h1>
+      <p style="color:var(--muted); font-size:16px; margin-bottom:32px;">10 שאלות • רמות מעורבות • כמה תדע?</p>
+      <button onclick="startTrivia()" style="background:var(--green); color:var(--black); border:none; padding:16px 48px; border-radius:8px; font-family:'Bebas Neue',cursive; font-size:24px; letter-spacing:2px; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">התחל משחק!</button>
+    </div>
+  </div>
+
+  <div id="triviaGame" style="display:none;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+      <div style="font-family:'Bebas Neue',cursive; font-size:18px; color:var(--muted);">שאלה <span id="qNum">1</span>/10</div>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:6px 16px; font-family:'Bebas Neue',cursive; font-size:18px; color:var(--green);">ניקוד: <span id="scoreDisplay">0</span></div>
+      <div id="timerDisplay" style="font-family:'Bebas Neue',cursive; font-size:18px; color:var(--accent);">⏱ <span id="timerNum">15</span></div>
+    </div>
+
+    <!-- Progress bar -->
+    <div style="background:var(--border); border-radius:4px; height:4px; margin-bottom:28px; overflow:hidden;">
+      <div id="progressBar" style="background:var(--green); height:100%; width:10%; transition:width 0.4s;"></div>
+    </div>
+
+    <div id="questionCard" style="background:var(--card); border:1px solid var(--border); border-radius:14px; padding:32px; margin-bottom:20px;">
+      <div id="diffBadge" style="font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; color:var(--green);"></div>
+      <h2 id="questionText" style="font-size:22px; font-weight:900; line-height:1.4; color:white;"></h2>
+    </div>
+
+    <div id="answersGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;"></div>
+
+    <div id="feedback" style="display:none; text-align:center; padding:16px; margin-top:16px; border-radius:10px; font-size:16px; font-weight:700;"></div>
+  </div>
+
+  <div id="triviaEnd" style="display:none; text-align:center; padding:48px 0;">
+    <div id="endEmoji" style="font-size:72px; margin-bottom:16px;"></div>
+    <h2 style="font-family:'Bebas Neue',cursive; font-size:48px; color:var(--green); letter-spacing:3px; margin-bottom:8px;">סיימת!</h2>
+    <p style="font-size:20px; color:var(--text); margin-bottom:8px;">קיבלת <span id="finalScore" style="color:var(--green); font-family:'Bebas Neue',cursive; font-size:32px;"></span> נקודות</p>
+    <p id="finalMsg" style="color:var(--muted); font-size:16px; margin-bottom:32px;"></p>
+    <div style="display:flex; gap:12px; justify-content:center;">
+      <button onclick="startTrivia()" style="background:var(--green); color:var(--black); border:none; padding:14px 36px; border-radius:8px; font-family:'Bebas Neue',cursive; font-size:20px; letter-spacing:2px; cursor:pointer;">שחק שוב!</button>
+      <button onclick="showHomePage()" style="background:var(--card); color:var(--text); border:1px solid var(--border); padding:14px 36px; border-radius:8px; font-family:'Bebas Neue',cursive; font-size:20px; letter-spacing:2px; cursor:pointer;">חזור לבית</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong id="footer-logo">גול 90</strong> — כל הזכויות שמורות &copy; 2026
+</footer>
+
+<script>
+const lang = {
+  he: {
+    dir: 'rtl',
+    logoText: 'גול<span>90</span>',
+    navHome: 'בית', navNews: 'חדשות', navScores: 'תוצאות', navTable: 'טבלה', navStats: 'סטטיסטיקות',
+    heroTag: 'חם עכשיו',
+    heroLeague: '⚽ ליגת האלופות | שלב הבית',
+    heroTitle: 'ריאל מדריד משמידה את ברצלונה בקלאסיקו הגדול ביותר של העונה',
+    heroMeta: 'מאת <span>יוסי כהן</span> • לפני 2 שעות • <span>15,423</span> קריאות',
+    side1Tag: 'פרמייר ליג', side1Title: 'ארלינג הולאן שובר שיא כל הזמנים של הפרמייר ליג ב-40 שערים', side1Meta: '⏰ לפני 4 שעות',
+    side2Tag: 'ליגה הלאומית', side2Title: 'מכבי תל אביב מגיעה לגמר הליגה — 0:1 על הפועל בדרבי', side2Meta: '⏰ לפני 6 שעות',
+    scoresLabel: 'תוצאות חיות',
+    statsTitle: 'סטטיסטיקות עונה', stat1: 'שערים שנכנסו', stat2: 'שיא שערים', stat3: 'אחוז סיום', stat4: 'ניצחונות רצופים',
+    newsTitle: 'חדשות אחרונות',
+    n1: 'קיליאן מבאפה חותם על חוזה הארוך ביותר בתולדות ריאל מדריד', n1p: 'הכוכב הצרפתי ממשיך עוד 5 שנים בסנטיאגו ברנאבאו תמורת שכר שבועי עצום', n1date: 'לפני 3 שעות',
+    n2: 'מנצ\'סטר סיטי — פיינל פור: הנשר מרחף שוב', n2p: 'גארדיולה מבטיח: "אנחנו מוכנים להתחרות על הגביע השלישי ברציפות"', n2date: 'לפני 5 שעות',
+    n3: 'נבחרת ישראל מתמודדת בפלייאוף לאליפות אירופה 2026', n3p: 'בן דיין: "אנחנו מאמינים שזו ההזדמנות ההיסטורית שלנו להיות שם"', n3date: 'לפני 8 שעות',
+    n4: 'למה הפרמייר ליג שולטת בכדורגל העולמי — ניתוח מספרים', n4p: 'נתוני ה-AI חושפים: הליגה האנגלית מייצרת 37% יותר הזדמנויות מכל ליגה אחרת', n4date: 'לפני 12 שעות',
+    tableTitle: 'טבלת ליגת האלופות',
+    thTeam: 'קבוצה', thP: 'מ\'', thW: 'נ', thD: 'ת', thL: 'ה', thPts: 'נק\'', thForm: 'פורמה',
+    scorersTitle: 'מלך השערים',
+    fixturesTitle: 'משחקים קרובים',
+    langBtn: 'EN',
+    footerLogo: 'גול 90',
+  },
+  en: {
+    dir: 'ltr',
+    logoText: 'GOAL<span>90</span>',
+    navHome: 'Home', navNews: 'News', navScores: 'Scores', navTable: 'Table', navStats: 'Stats',
+    heroTag: 'BREAKING',
+    heroLeague: '⚽ UEFA Champions League | League Phase',
+    heroTitle: 'Real Madrid Demolishes Barcelona in the Greatest El Clásico of the Season',
+    heroMeta: 'By <span>Yossi Cohen</span> • 2 hours ago • <span>15,423</span> reads',
+    side1Tag: 'Premier League', side1Title: 'Erling Haaland Breaks All-Time Premier League Record with 40 Goals', side1Meta: '⏰ 4 hours ago',
+    side2Tag: 'Israeli League', side2Title: 'Maccabi Tel Aviv Reaches the League Final — Derby Win 1-0', side2Meta: '⏰ 6 hours ago',
+    scoresLabel: 'LIVE SCORES',
+    statsTitle: 'Season Statistics', stat1: 'Goals Scored', stat2: 'Top Scorer', stat3: 'Completion %', stat4: 'Win Streak',
+    newsTitle: 'Latest News',
+    n1: 'Kylian Mbappé Signs the Longest Contract in Real Madrid History', n1p: 'The French star extends for 5 more years at the Bernabéu with a record weekly salary', n1date: '3 hours ago',
+    n2: 'Manchester City to the Final Four: The Eagle Soars Again', n2p: 'Guardiola promises: "We are ready to fight for a historic third consecutive title"', n2date: '5 hours ago',
+    n3: 'Israel National Team Enters Euro 2026 Playoff — Historic Chance', n3p: 'Ben Dayan: "We believe this is our historic opportunity to be there"', n3date: '8 hours ago',
+    n4: 'Why the Premier League Dominates World Football — A Data Breakdown', n4p: 'AI data reveals: The English league generates 37% more chances than any other competition', n4date: '12 hours ago',
+    tableTitle: 'Champions League Table',
+    thTeam: 'Club', thP: 'P', thW: 'W', thD: 'D', thL: 'L', thPts: 'Pts', thForm: 'Form',
+    scorersTitle: 'Top Scorers',
+    fixturesTitle: 'Upcoming Fixtures',
+    langBtn: 'עב',
+    footerLogo: 'Goal 90',
+  }
+};
+
+let current = 'he';
+
+function toggleLang() {
+  current = current === 'he' ? 'en' : 'he';
+  const l = lang[current];
+  const html = document.documentElement;
+  html.lang = current;
+  document.body.dir = l.dir;
+
+  document.getElementById('logo').innerHTML = l.logoText;
+  document.getElementById('nav-home').textContent = l.navHome;
+  document.getElementById('nav-news').textContent = l.navNews;
+  document.getElementById('nav-scores').textContent = l.navScores;
+  document.getElementById('nav-table').textContent = l.navTable;
+  document.getElementById('nav-stats').textContent = l.navStats;
+  document.getElementById('langBtn').textContent = l.langBtn;
+  document.getElementById('hero-tag').textContent = l.heroTag;
+  document.getElementById('hero-league').textContent = l.heroLeague;
+  document.getElementById('hero-title').textContent = l.heroTitle;
+  document.getElementById('hero-meta').innerHTML = l.heroMeta;
+  document.getElementById('side1-tag').textContent = l.side1Tag;
+  document.getElementById('side1-title').textContent = l.side1Title;
+  document.getElementById('side1-meta').textContent = l.side1Meta;
+  document.getElementById('side2-tag').textContent = l.side2Tag;
+  document.getElementById('side2-title').textContent = l.side2Title;
+  document.getElementById('side2-meta').textContent = l.side2Meta;
+  document.getElementById('scores-label').textContent = l.scoresLabel;
+  document.getElementById('stats-title').textContent = l.statsTitle;
+  document.getElementById('stat1').textContent = l.stat1;
+  document.getElementById('stat2').textContent = l.stat2;
+  document.getElementById('stat3').textContent = l.stat3;
+  document.getElementById('stat4').textContent = l.stat4;
+  document.getElementById('news-title').textContent = l.newsTitle;
+  document.getElementById('n1').textContent = l.n1;
+  document.getElementById('n1p').textContent = l.n1p;
+  document.getElementById('n1date').textContent = l.n1date;
+  document.getElementById('n2').textContent = l.n2;
+  document.getElementById('n2p').textContent = l.n2p;
+  document.getElementById('n2date').textContent = l.n2date;
+  document.getElementById('n3').textContent = l.n3;
+  document.getElementById('n3p').textContent = l.n3p;
+  document.getElementById('n3date').textContent = l.n3date;
+  document.getElementById('n4').textContent = l.n4;
+  document.getElementById('n4p').textContent = l.n4p;
+  document.getElementById('n4date').textContent = l.n4date;
+  document.getElementById('table-title').textContent = l.tableTitle;
+  document.getElementById('th-team').textContent = l.thTeam;
+  document.getElementById('th-p').textContent = l.thP;
+  document.getElementById('th-w').textContent = l.thW;
+  document.getElementById('th-d').textContent = l.thD;
+  document.getElementById('th-l').textContent = l.thL;
+  document.getElementById('th-pts').textContent = l.thPts;
+  document.getElementById('th-form').textContent = l.thForm;
+  document.getElementById('scorers-title').textContent = l.scorersTitle;
+  document.getElementById('fixtures-title').textContent = l.fixturesTitle;
+  document.getElementById('footer-logo').textContent = l.footerLogo;
+  // update search placeholder
+  const inp = document.getElementById('searchInput');
+  inp.placeholder = current === 'he' ? 'חפש שחקן או קבוצה...' : 'Search player or team...';
+  document.getElementById('tabPlayers').textContent = current === 'he' ? 'שחקנים' : 'Players';
+  document.getElementById('tabTeams').textContent = current === 'he' ? 'קבוצות' : 'Teams';
+  onSearch(inp.value);
+}
+
+// ===== SEARCH DATA =====
+const players = [
+  { name: 'ארלינג הולאן', nameEn: 'Erling Haaland', team: 'מנצ׳סטר סיטי', teamEn: 'Man City', goals: 40, age: 24, emoji: '🇳🇴' },
+  { name: 'קיליאן מבאפה', nameEn: 'Kylian Mbappé', team: 'ריאל מדריד', teamEn: 'Real Madrid', goals: 32, age: 25, emoji: '🇫🇷' },
+  { name: 'ויניציוס ג׳ר', nameEn: 'Vinicius Jr', team: 'ריאל מדריד', teamEn: 'Real Madrid', goals: 28, age: 23, emoji: '🇧🇷' },
+  { name: 'מוחמד סלאח', nameEn: 'Mohamed Salah', team: 'ליברפול', teamEn: 'Liverpool', goals: 24, age: 32, emoji: '🇪🇬' },
+  { name: 'לאוטרו מרטינז', nameEn: 'Lautaro Martinez', team: 'אינטר מילאן', teamEn: 'Inter Milan', goals: 25, age: 26, emoji: '🇦🇷' },
+  { name: 'ג׳וד בלינגהאם', nameEn: 'Jude Bellingham', team: 'ריאל מדריד', teamEn: 'Real Madrid', goals: 18, age: 20, emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'רוברט לבנדובסקי', nameEn: 'Robert Lewandowski', team: 'ברצלונה', teamEn: 'Barcelona', goals: 22, age: 35, emoji: '🇵🇱' },
+  { name: 'פיל פודן', nameEn: 'Phil Foden', team: 'מנצ׳סטר סיטי', teamEn: 'Man City', goals: 19, age: 23, emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'אנטואן גריזמן', nameEn: 'Antoine Griezmann', team: 'אטלטיקו מדריד', teamEn: 'Atletico Madrid', goals: 17, age: 33, emoji: '🇫🇷' },
+  { name: 'הארי קיין', nameEn: 'Harry Kane', team: 'ביירן מינכן', teamEn: 'Bayern Munich', goals: 29, age: 30, emoji: '🏴󠁧󠁢󠁥󠁮󠁧󠁿' },
+  { name: 'אוסקר גלוך', nameEn: 'Oscar Gloukh', team: 'RB לייפציג', teamEn: 'RB Leipzig', goals: 11, age: 20, emoji: '🇮🇱' },
+  { name: 'מור סנדה', nameEn: 'Mor Sanda', team: 'מכבי ת"א', teamEn: 'Maccabi TA', goals: 8, age: 22, emoji: '🇮🇱' },
+];
+
+const teams = [
+  { name: 'ריאל מדריד', nameEn: 'Real Madrid', league: 'לה ליגה', leagueEn: 'La Liga', rank: 1, emoji: '⚪' },
+  { name: 'ברצלונה', nameEn: 'Barcelona', league: 'לה ליגה', leagueEn: 'La Liga', rank: 2, emoji: '🔵' },
+  { name: 'מנצ׳סטר סיטי', nameEn: 'Man City', league: 'פרמייר ליג', leagueEn: 'Premier League', rank: 1, emoji: '🔵' },
+  { name: 'ליברפול', nameEn: 'Liverpool', league: 'פרמייר ליג', leagueEn: 'Premier League', rank: 3, emoji: '🔴' },
+  { name: 'ביירן מינכן', nameEn: 'Bayern Munich', league: 'בונדסליגה', leagueEn: 'Bundesliga', rank: 1, emoji: '🔴' },
+  { name: 'PSG', nameEn: 'PSG', league: 'ליג 1', leagueEn: 'Ligue 1', rank: 1, emoji: '🔵' },
+  { name: 'אינטר מילאן', nameEn: 'Inter Milan', league: 'סריה א', leagueEn: 'Serie A', rank: 1, emoji: '⚫' },
+  { name: 'מכבי תל אביב', nameEn: 'Maccabi Tel Aviv', league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 1, emoji: '🟡' },
+  { name: 'הפועל תל אביב', nameEn: 'Hapoel Tel Aviv', league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 4, emoji: '🔴' },
+  { name: 'בית"ר ירושלים', nameEn: "Beitar Jerusalem", league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 3, emoji: '🟡' },
+  { name: 'אטלטיקו מדריד', nameEn: 'Atletico Madrid', league: 'לה ליגה', leagueEn: 'La Liga', rank: 3, emoji: '🔴' },
+  { name: 'דורטמונד', nameEn: 'Dortmund', league: 'בונדסליגה', leagueEn: 'Bundesliga', rank: 2, emoji: '🟡' },
+];
+
+let activeTab = 'players';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.getElementById('tabPlayers').classList.toggle('active', tab === 'players');
+  document.getElementById('tabTeams').classList.toggle('active', tab === 'teams');
+  renderResults(document.getElementById('searchInput').value);
+}
+
+function openDropdown() {
+  renderResults(document.getElementById('searchInput').value);
+  document.getElementById('searchDropdown').classList.add('open');
+}
+
+document.addEventListener('click', function(e) {
+  if (!document.getElementById('searchWrap').contains(e.target)) {
+    document.getElementById('searchDropdown').classList.remove('open');
+  }
+});
+
+function onSearch(q) {
+  renderResults(q);
+  document.getElementById('searchDropdown').classList.add('open');
+}
+
+function renderResults(q) {
+  const isHe = current === 'he';
+  const query = q.trim().toLowerCase();
+  const container = document.getElementById('searchResults');
+
+  if (activeTab === 'players') {
+    const filtered = players.filter(p => {
+      const n = isHe ? p.name : p.nameEn;
+      const t = isHe ? p.team : p.teamEn;
+      return !query || n.includes(query) || t.toLowerCase().includes(query) || p.nameEn.toLowerCase().includes(query);
+    });
+    if (!filtered.length) {
+      container.innerHTML = `<div class="no-results"><span>🔍</span>${isHe ? 'לא נמצאו שחקנים' : 'No players found'}</div>`;
+      return;
+    }
+    container.innerHTML = filtered.map(p => `
+      <div class="result-item">
+        <div class="result-avatar">${p.emoji}</div>
+        <div class="result-info">
+          <div class="result-name">${isHe ? p.name : p.nameEn}</div>
+          <div class="result-sub">${isHe ? p.team : p.teamEn} • ${isHe ? 'גיל' : 'Age'} ${p.age}</div>
+        </div>
+        <div class="result-badge">${p.goals}<small>${isHe ? 'שערים' : 'goals'}</small></div>
+      </div>
+    `).join('');
+  } else {
+    const filtered = teams.filter(t => {
+      const n = isHe ? t.name : t.nameEn;
+      const l = isHe ? t.league : t.leagueEn;
+      return !query || n.includes(query) || l.toLowerCase().includes(query) || t.nameEn.toLowerCase().includes(query);
+    });
+    if (!filtered.length) {
+      container.innerHTML = `<div class="no-results"><span>🔍</span>${isHe ? 'לא נמצאו קבוצות' : 'No teams found'}</div>`;
+      return;
+    }
+    container.innerHTML = filtered.map(t => `
+      <div class="result-item">
+        <div class="result-avatar team">${t.emoji}</div>
+        <div class="result-info">
+          <div class="result-name">${isHe ? t.name : t.nameEn}</div>
+          <div class="result-sub">${isHe ? t.league : t.leagueEn}</div>
+        </div>
+        <div class="result-badge">#${t.rank}<small>${isHe ? 'מיקום' : 'rank'}</small></div>
+      </div>
+    `).join('');
+  }
+}
+
+// ===== TEAMS PAGE =====
+const teamsData = [
+  { name: 'ריאל מדריד', nameEn: 'Real Madrid', league: 'לה ליגה', leagueEn: 'La Liga', rank: 1, emoji: '⚪', wins: 24, goals: 78, pts: 75 },
+  { name: 'ברצלונה', nameEn: 'Barcelona', league: 'לה ליגה', leagueEn: 'La Liga', rank: 2, emoji: '🔵', wins: 21, goals: 68, pts: 66 },
+  { name: 'אטלטיקו מדריד', nameEn: 'Atletico Madrid', league: 'לה ליגה', leagueEn: 'La Liga', rank: 3, emoji: '🔴', wins: 18, goals: 55, pts: 58 },
+  { name: 'מנצ׳סטר סיטי', nameEn: 'Man City', league: 'פרמייר ליג', leagueEn: 'Premier League', rank: 1, emoji: '🩵', wins: 23, goals: 82, pts: 71 },
+  { name: 'ארסנל', nameEn: 'Arsenal', league: 'פרמייר ליג', leagueEn: 'Premier League', rank: 2, emoji: '🔴', wins: 22, goals: 70, pts: 68 },
+  { name: 'ליברפול', nameEn: 'Liverpool', league: 'פרמייר ליג', leagueEn: 'Premier League', rank: 3, emoji: '🔴', wins: 20, goals: 72, pts: 63 },
+  { name: 'צ׳לסי', nameEn: 'Chelsea', league: 'פרמייר ליג', leagueEn: 'Premier League', rank: 4, emoji: '🔵', wins: 17, goals: 58, pts: 54 },
+  { name: 'ביירן מינכן', nameEn: 'Bayern Munich', league: 'בונדסליגה', leagueEn: 'Bundesliga', rank: 1, emoji: '🔴', wins: 22, goals: 80, pts: 68 },
+  { name: 'דורטמונד', nameEn: 'Dortmund', league: 'בונדסליגה', leagueEn: 'Bundesliga', rank: 2, emoji: '🟡', wins: 17, goals: 61, pts: 55 },
+  { name: 'לייפציג', nameEn: 'RB Leipzig', league: 'בונדסליגה', leagueEn: 'Bundesliga', rank: 3, emoji: '🔴', wins: 16, goals: 57, pts: 51 },
+  { name: 'אינטר מילאן', nameEn: 'Inter Milan', league: 'סריה א', leagueEn: 'Serie A', rank: 1, emoji: '⚫', wins: 23, goals: 73, pts: 71 },
+  { name: 'יובנטוס', nameEn: 'Juventus', league: 'סריה א', leagueEn: 'Serie A', rank: 2, emoji: '⚪', wins: 18, goals: 55, pts: 57 },
+  { name: 'מילאן', nameEn: 'AC Milan', league: 'סריה א', leagueEn: 'Serie A', rank: 3, emoji: '🔴', wins: 17, goals: 52, pts: 54 },
+  { name: 'PSG', nameEn: 'PSG', league: 'ליג 1', leagueEn: 'Ligue 1', rank: 1, emoji: '🔵', wins: 25, goals: 85, pts: 78 },
+  { name: 'מארסיי', nameEn: 'Marseille', league: 'ליג 1', leagueEn: 'Ligue 1', rank: 2, emoji: '🩵', wins: 18, goals: 59, pts: 57 },
+  { name: 'מכבי תל אביב', nameEn: 'Maccabi Tel Aviv', league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 1, emoji: '🟡', wins: 20, goals: 58, pts: 63 },
+  { name: 'הפועל תל אביב', nameEn: 'Hapoel Tel Aviv', league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 2, emoji: '🔴', wins: 17, goals: 49, pts: 54 },
+  { name: 'בית"ר ירושלים', nameEn: "Beitar Jerusalem", league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 3, emoji: '🟡', wins: 15, goals: 44, pts: 48 },
+  { name: 'מכבי חיפה', nameEn: 'Maccabi Haifa', league: 'ליגה הלאומית', leagueEn: 'Israeli Premier', rank: 4, emoji: '🟢', wins: 14, goals: 41, pts: 45 },
+];
+
+let currentLeague = 'all';
+
+function showTeamsPage() {
+  document.getElementById('teamsPage').style.display = 'block';
+  document.querySelector('.hero').style.display = 'none';
+  document.querySelector('.scores-section').style.display = 'none';
+  document.querySelector('.stats-section').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('nav-teams').classList.add('active');
+  renderTeams();
+}
+
+function showHomePage() {
+  document.getElementById('teamsPage').style.display = 'none';
+  document.querySelector('.hero').style.display = '';
+  document.querySelector('.scores-section').style.display = '';
+  document.querySelector('.stats-section').style.display = '';
+  document.querySelector('.main').style.display = '';
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('nav-home').classList.add('active');
+}
+
+document.getElementById('nav-home').addEventListener('click', function(e) {
+  e.preventDefault(); showHomePage();
+});
+
+function filterLeague(league) {
+  currentLeague = league;
+  document.querySelectorAll('.league-filter').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderTeams();
+}
+
+function renderTeams() {
+  const isHe = current === 'he';
+  const filtered = currentLeague === 'all' ? teamsData : teamsData.filter(t => t.league === currentLeague);
+  document.getElementById('teams-page-title').textContent = isHe ? 'כל הקבוצות' : 'All Teams';
+  document.getElementById('teamsGrid').innerHTML = filtered.map(t => `
+    <div class="team-card">
+      <div class="team-rank-badge ${t.rank <= 3 ? 'top' : ''}">#${t.rank}</div>
+      <span class="team-emoji">${t.emoji}</span>
+      <div class="team-card-name">${isHe ? t.name : t.nameEn}</div>
+      <div class="team-card-league">${isHe ? t.league : t.leagueEn}</div>
+      <div class="team-card-stats">
+        <div class="team-stat"><div class="team-stat-num">${t.wins}</div><div class="team-stat-label">${isHe ? 'נצחונות' : 'Wins'}</div></div>
+        <div class="team-stat"><div class="team-stat-num">${t.goals}</div><div class="team-stat-label">${isHe ? 'שערים' : 'Goals'}</div></div>
+        <div class="team-stat"><div class="team-stat-num">${t.pts}</div><div class="team-stat-label">${isHe ? "נק'" : 'Pts'}</div></div>
+      </div>
+    </div>
+  `).join('');
+}
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+
+const triviaQuestions = [
+  { q: 'באיזה מדינה נולד ליאונל מסי?', answers: ['ארגנטינה','ברזיל','אורוגוואי','ספרד'], correct: 0, diff: 'קל', diffColor: '#00c853' },
+  { q: 'כמה שחקנים יש בקבוצת כדורגל על המגרש?', answers: ['9','10','11','12'], correct: 2, diff: 'קל', diffColor: '#00c853' },
+  { q: 'איזה קבוצה זכתה בליגת האלופות הכי הרבה פעמים?', answers: ['ברצלונה','ריאל מדריד','ביירן מינכן','ליברפול'], correct: 1, diff: 'בינוני', diffColor: '#ffab00' },
+  { q: 'מי הכובש הכי גדול בתולדות ליגת האלופות?', answers: ['מסי','רונאלדו','ראול','לואיס גארסיה'], correct: 1, diff: 'בינוני', diffColor: '#ffab00' },
+  { q: 'באיזה שנה זכתה ברזיל לאחרונה בגביע העולם?', answers: ['1998','2002','2006','2014'], correct: 1, diff: 'בינוני', diffColor: '#ffab00' },
+  { q: 'כמה דקות נמשכת משחק כדורגל רגיל?', answers: ['80','85','90','95'], correct: 2, diff: 'קל', diffColor: '#00c853' },
+  { q: 'איזה שחקן ישראלי משחק ב-RB לייפציג?', answers: ['עדן קצרין','אוסקר גלוך','מור סנדה','ניצן חיים'], correct: 1, diff: 'קשה', diffColor: '#ff3d00' },
+  { q: 'באיזה מדינה מתקיים גביע העולם 2026?', answers: ['קטאר','ארה"ב, קנדה ומקסיקו','ברזיל','ספרד'], correct: 1, diff: 'בינוני', diffColor: '#ffab00' },
+  { q: 'מה נקרא העונש על עבירה בתוך תיבת העונשין?', answers: ['בעיטת פינה','פנדל','בעיטה חופשית','אוט'], correct: 1, diff: 'קל', diffColor: '#00c853' },
+  { q: 'כמה גביעי עולם זכתה ברזיל בסך הכל?', answers: ['3','4','5','6'], correct: 2, diff: 'קשה', diffColor: '#ff3d00' },
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+let timerInterval = null;
+let timeLeft = 15;
+
+function showTriviaPage() {
+  document.getElementById('triviaPage').style.display = 'block';
+  document.querySelector('.hero').style.display = 'none';
+  document.querySelector('.scores-section').style.display = 'none';
+  document.querySelector('.stats-section').style.display = 'none';
+  document.querySelector('.main').style.display = 'none';
+  document.getElementById('teamsPage').style.display = 'none';
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('nav-trivia').classList.add('active');
+  document.getElementById('triviaStart').style.display = 'block';
+  document.getElementById('triviaGame').style.display = 'none';
+  document.getElementById('triviaEnd').style.display = 'none';
+}
+
+// patch showHomePage and showTeamsPage to hide trivia
+const _origHome = showHomePage;
+function showHomePage() {
+  document.getElementById('triviaPage').style.display = 'none';
+  _origHome();
+}
+
+function startTrivia() {
+  currentQ = 0; score = 0; answered = false;
+  document.getElementById('triviaStart').style.display = 'none';
+  document.getElementById('triviaEnd').style.display = 'none';
+  document.getElementById('triviaGame').style.display = 'block';
+  document.getElementById('scoreDisplay').textContent = 0;
+  loadQuestion();
+}
+
+function loadQuestion() {
+  if (currentQ >= triviaQuestions.length) { endTrivia(); return; }
+  answered = false;
+  clearInterval(timerInterval);
+  timeLeft = 15;
+
+  const q = triviaQuestions[currentQ];
+  document.getElementById('qNum').textContent = currentQ + 1;
+  document.getElementById('progressBar').style.width = ((currentQ + 1) / 10 * 100) + '%';
+  document.getElementById('diffBadge').textContent = '⚡ ' + q.diff;
+  document.getElementById('diffBadge').style.color = q.diffColor;
+  document.getElementById('questionText').textContent = q.q;
+  document.getElementById('feedback').style.display = 'none';
+  document.getElementById('timerNum').textContent = timeLeft;
+
+  const grid = document.getElementById('answersGrid');
+  grid.innerHTML = q.answers.map((a, i) => `
+    <button onclick="selectAnswer(${i})" style="
+      background:var(--card); border:1px solid var(--border);
+      color:var(--text); padding:16px; border-radius:10px;
+      font-family:'Heebo',sans-serif; font-size:15px; font-weight:700;
+      cursor:pointer; transition:all 0.2s; text-align:right;
+    " onmouseover="if(!this.dataset.locked)this.style.borderColor='var(--green)'"
+       onmouseout="if(!this.dataset.locked)this.style.borderColor='var(--border)'"
+       id="ans-${i}">${a}</button>
+  `).join('');
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById('timerNum').textContent = timeLeft;
+    if (timeLeft <= 5) document.getElementById('timerNum').style.color = '#ff3d00';
+    else document.getElementById('timerNum').style.color = 'var(--accent)';
+    if (timeLeft <= 0) { clearInterval(timerInterval); timeUp(); }
+  }, 1000);
+}
+
+function selectAnswer(i) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+  const q = triviaQuestions[currentQ];
+  const buttons = document.querySelectorAll('[id^="ans-"]');
+
+  buttons.forEach(b => { b.dataset.locked = 'true'; b.style.cursor = 'default'; });
+
+  if (i === q.correct) {
+    const pts = timeLeft >= 10 ? 100 : timeLeft >= 5 ? 75 : 50;
+    score += pts;
+    document.getElementById('scoreDisplay').textContent = score;
+    document.getElementById(`ans-${i}`).style.background = 'rgba(0,200,83,0.2)';
+    document.getElementById(`ans-${i}`).style.borderColor = 'var(--green)';
+    document.getElementById(`ans-${i}`).style.color = 'var(--green)';
+    showFeedback('✅ נכון! +' + pts + ' נקודות', 'rgba(0,200,83,0.15)', 'var(--green)');
+  } else {
+    document.getElementById(`ans-${i}`).style.background = 'rgba(255,61,0,0.2)';
+    document.getElementById(`ans-${i}`).style.borderColor = 'var(--accent)';
+    document.getElementById(`ans-${i}`).style.color = 'var(--accent)';
+    document.getElementById(`ans-${q.correct}`).style.background = 'rgba(0,200,83,0.2)';
+    document.getElementById(`ans-${q.correct}`).style.borderColor = 'var(--green)';
+    document.getElementById(`ans-${q.correct}`).style.color = 'var(--green)';
+    showFeedback('❌ טעות! התשובה הנכונה: ' + q.answers[q.correct], 'rgba(255,61,0,0.15)', 'var(--accent)');
+  }
+
+  setTimeout(() => { currentQ++; loadQuestion(); }, 1800);
+}
+
+function timeUp() {
+  if (answered) return;
+  answered = true;
+  const q = triviaQuestions[currentQ];
+  document.getElementById(`ans-${q.correct}`).style.background = 'rgba(0,200,83,0.2)';
+  document.getElementById(`ans-${q.correct}`).style.borderColor = 'var(--green)';
+  document.getElementById(`ans-${q.correct}`).style.color = 'var(--green)';
+  showFeedback('⏱ נגמר הזמן! התשובה: ' + q.answers[q.correct], 'rgba(255,171,0,0.15)', '#ffab00');
+  setTimeout(() => { currentQ++; loadQuestion(); }, 1800);
+}
+
+function showFeedback(msg, bg, color) {
+  const f = document.getElementById('feedback');
+  f.textContent = msg;
+  f.style.background = bg;
+  f.style.color = color;
+  f.style.border = '1px solid ' + color;
+  f.style.display = 'block';
+}
+
+function endTrivia() {
+  clearInterval(timerInterval);
+  document.getElementById('triviaGame').style.display = 'none';
+  document.getElementById('triviaEnd').style.display = 'block';
+  document.getElementById('finalScore').textContent = score;
+  let emoji, msg;
+  if (score >= 900) { emoji = '🏆'; msg = 'מושלם! אתה מומחה כדורגל אמיתי!'; }
+  else if (score >= 700) { emoji = '🥇'; msg = 'כל הכבוד! תוצאה מעולה!'; }
+  else if (score >= 500) { emoji = '⚽'; msg = 'יפה מאוד! עוד קצת ואתה אלוף!'; }
+  else if (score >= 300) { emoji = '💪'; msg = 'לא רע! תתאמן עוד קצת!'; }
+  else { emoji = '📚'; msg = 'תלמד עוד קצת ותנסה שוב!'; }
+  document.getElementById('endEmoji').textContent = emoji;
+  document.getElementById('finalMsg').textContent = msg;
+}
+</script>
+</body>
+</html>
